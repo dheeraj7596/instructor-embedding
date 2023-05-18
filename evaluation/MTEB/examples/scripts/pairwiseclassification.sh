@@ -1,0 +1,3 @@
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name SprintDuplicateQuestions --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name TwitterSemEval2015 --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name TwitterURLCorpus --result_file results
