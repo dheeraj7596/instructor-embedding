@@ -1,3 +1,4 @@
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name Banking77Classification --result_file results
 python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name TweetSentimentExtractionClassification --result_file results
 python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name AmazonReviewsClassification --result_file results
 python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name EmotionClassification --result_file results
