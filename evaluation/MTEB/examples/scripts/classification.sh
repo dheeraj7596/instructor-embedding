@@ -1,0 +1,11 @@
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name TweetSentimentExtractionClassification --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name AmazonReviewsClassification --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name EmotionClassification --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name AmazonCounterfactualClassification --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name ImdbClassification --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name MassiveIntentClassification --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name MassiveScenarioClassification --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name MTOPIntentClassification --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name MTOPDomainClassification --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name AmazonPolarityClassification --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name ToxicConversationsClassification --result_file results
