@@ -1,0 +1,11 @@
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name BiorxivClusteringS2S --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name MedrxivClusteringS2S --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name TwentyNewsgroupsClustering --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name ArxivClusteringP2P --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name ArxivClusteringS2S --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name BiorxivClusteringP2P --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name MedrxivClusteringP2P --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name RedditClustering --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name RedditClusteringP2P --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name StackExchangeClustering --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name StackExchangeClusteringP2P --result_file results
