@@ -1,0 +1,4 @@
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name AskUbuntuDupQuestions --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name StackOverflowDupQuestions --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name SciDocsRR --result_file results
+python examples/evaluate_model.py --model_name hkunlp/instructor-base --output_dir outputs --task_name MindSmallReranking --result_file results
