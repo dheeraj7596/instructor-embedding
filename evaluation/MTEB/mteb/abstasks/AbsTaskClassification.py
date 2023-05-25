@@ -65,6 +65,7 @@ class AbsTaskClassification(AbsTask):
         eval_split = dataset[eval_split]
         params = {"k": self.k, "batch_size": self.batch_size}
         params.update(kwargs)
+        print("Method used", self.method)
 
         scores = []
         test_cache, idxs = None, None  # we store idxs to make the shuffling reproducible

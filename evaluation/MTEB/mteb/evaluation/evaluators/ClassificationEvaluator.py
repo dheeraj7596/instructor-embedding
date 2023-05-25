@@ -280,6 +280,8 @@ class logRegClassificationEvaluator(Evaluator):
         **kwargs
     ):
         super().__init__(**kwargs)
+        print("Size of training data", len(y_train))
+        print("Size of test data", len(y_test))
         if limit is not None:
             sentences_train = sentences_train[:limit]
             y_train = y_train[:limit]
@@ -313,18 +315,22 @@ class logRegClassificationEvaluator(Evaluator):
         if self.args.prompt:
             new_sentences = []
             print('with prompt')
+            print("Training prompt:", DEFINITIONS[self.args.prompt][self.args.task_name])
             for s in self.sentences_train:
-                print("Training prompt", DEFINITIONS[self.args.prompt][self.args.task_name])
                 new_sentences.append([DEFINITIONS[self.args.prompt][self.args.task_name], s, 0])
             self.sentences_train = new_sentences
 
             new_sentences = []
             print('with prompt')
+            print("Test prompt:", DEFINITIONS[self.args.prompt][self.args.task_name])
             for s in self.sentences_test:
-                print("Test prompt", DEFINITIONS[self.args.prompt][self.args.task_name])
                 new_sentences.append([DEFINITIONS[self.args.prompt][self.args.task_name], s, 0])
             self.sentences_test = new_sentences
 
+        import random
+        temp_sents = random.sample(self.sentences_train, 3)
+        for temp in temp_sents:
+            logger.info(temp)
         X_train = np.asarray(model.encode(self.sentences_train, batch_size=self.batch_size))
         logger.info(f"Encoding {len(self.sentences_test)} test sentences...")
         # if test_cache is None:
