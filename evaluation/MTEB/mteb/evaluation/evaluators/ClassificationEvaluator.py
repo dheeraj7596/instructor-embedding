@@ -314,12 +314,14 @@ class logRegClassificationEvaluator(Evaluator):
             new_sentences = []
             print('with prompt')
             for s in self.sentences_train:
+                print("Training prompt", DEFINITIONS[self.args.prompt][self.args.task_name])
                 new_sentences.append([DEFINITIONS[self.args.prompt][self.args.task_name], s, 0])
             self.sentences_train = new_sentences
 
             new_sentences = []
             print('with prompt')
             for s in self.sentences_test:
+                print("Test prompt", DEFINITIONS[self.args.prompt][self.args.task_name])
                 new_sentences.append([DEFINITIONS[self.args.prompt][self.args.task_name], s, 0])
             self.sentences_test = new_sentences
 
