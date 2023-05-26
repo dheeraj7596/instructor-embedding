@@ -8,7 +8,46 @@ from .Evaluator import Evaluator
 
 
 logger = logging.getLogger(__name__)
-
+# RANDOM_DEFINITIONS = {
+#     'hkunlp/instructor-base':
+#         {
+#             'TwitterSemEval2015': 'over his head, the smaller it seemed: ',
+#             'TwitterURLCorpus': 'he was sitting on the chimney. The Dursleys: ',
+#             'SprintDuplicateQuestions': 'pull it over his head, the smaller: ',
+#         },
+#     # 'hkunlp/instructor-large':
+#     #     {
+#     #         'TwitterSemEval2015': 'Represent the tweet post for retrieving duplicate comments: ',
+#     #         'TwitterURLCorpus': 'represent a tweet post for retrieval: ',
+#     #         'SprintDuplicateQuestions': 'represent the Sprint post for retrieving duplicate posts: ',
+#     #     },
+#     # 'hkunlp/instructor-xl':
+#     #     {
+#     #         'TwitterSemEval2015': 'Represent the twitter post for retrieving comments: ',
+#     #         'TwitterURLCorpus': 'represent a Twitter posts for retrieval: ',
+#     #         'SprintDuplicateQuestions': 'represent the Sprint questions for retrieving relevant posts, ',
+#     #     },
+# }
+# MISLEADING_DEFINITIONS = {
+#     'hkunlp/instructor-base':
+#         {
+#             'TwitterSemEval2015': 'Represent an amazon review sentence for classifying emotion as positive or negative: ',
+#             'TwitterURLCorpus': 'Represent an amazon review sentence for classifying emotion as positive or negative: ',
+#             'SprintDuplicateQuestions': 'Represent an amazon review sentence for classifying emotion as positive or negative: ',
+#         },
+#     # 'hkunlp/instructor-large':
+#     #     {
+#     #         'TwitterSemEval2015': 'Represent the tweet post for retrieving duplicate comments: ',
+#     #         'TwitterURLCorpus': 'represent a tweet post for retrieval: ',
+#     #         'SprintDuplicateQuestions': 'represent the Sprint post for retrieving duplicate posts: ',
+#     #     },
+#     # 'hkunlp/instructor-xl':
+#     #     {
+#     #         'TwitterSemEval2015': 'Represent the twitter post for retrieving comments: ',
+#     #         'TwitterURLCorpus': 'represent a Twitter posts for retrieval: ',
+#     #         'SprintDuplicateQuestions': 'represent the Sprint questions for retrieving relevant posts, ',
+#     #     },
+# }
 DEFINITIONS = {
     'hkunlp/instructor-base':
         {
@@ -16,18 +55,18 @@ DEFINITIONS = {
             'TwitterURLCorpus': 'represent a tweet post for retrieval: ',
             'SprintDuplicateQuestions': 'represent the Sprint post for retrieving duplicate posts: ',
         },
-    'hkunlp/instructor-large':
-        {
-            'TwitterSemEval2015': 'Represent the tweet post for retrieving duplicate comments: ',
-            'TwitterURLCorpus': 'represent a tweet post for retrieval: ',
-            'SprintDuplicateQuestions': 'represent the Sprint post for retrieving duplicate posts: ',
-        },
-    'hkunlp/instructor-xl':
-        {
-            'TwitterSemEval2015': 'Represent the twitter post for retrieving comments: ',
-            'TwitterURLCorpus': 'represent a Twitter posts for retrieval: ',
-            'SprintDuplicateQuestions': 'represent the Sprint questions for retrieving relevant posts, ',
-        },
+    # 'hkunlp/instructor-large':
+    #     {
+    #         'TwitterSemEval2015': 'Represent the tweet post for retrieving duplicate comments: ',
+    #         'TwitterURLCorpus': 'represent a tweet post for retrieval: ',
+    #         'SprintDuplicateQuestions': 'represent the Sprint post for retrieving duplicate posts: ',
+    #     },
+    # 'hkunlp/instructor-xl':
+    #     {
+    #         'TwitterSemEval2015': 'Represent the twitter post for retrieving comments: ',
+    #         'TwitterURLCorpus': 'represent a Twitter posts for retrieval: ',
+    #         'SprintDuplicateQuestions': 'represent the Sprint questions for retrieving relevant posts, ',
+    #     },
 }
 
 class PairClassificationEvaluator(Evaluator):
@@ -76,6 +115,7 @@ class PairClassificationEvaluator(Evaluator):
         logger.info(f"Encoding {len(sentences)} sentences...")
         new_sentences = []
         if self.args.prompt:
+            print('with prompt', self.args.prompt)
             for s in sentences:
                 new_sentences.append([DEFINITIONS[self.args.prompt][self.args.task_name],s,0])
         else:

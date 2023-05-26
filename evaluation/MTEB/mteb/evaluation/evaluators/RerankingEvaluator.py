@@ -10,7 +10,152 @@ from .utils import cos_sim
 
 
 logger = logging.getLogger(__name__)
-
+# RANDOM_DEFINITIONS = {
+#     'hkunlp/instructor-base': {
+#         'AskUbuntuDupQuestions':
+#             {
+#                 'query': 'had laughed himself silly at Harry: ',
+#                 'corpus': 'had laughed himself silly at Harry: ',
+#             },
+#         'StackOverflowDupQuestions':
+#             {
+#                 'query': 'she tried to pull it over his head: ',
+#                 'corpus': 'she tried to pull it over his head: ',
+#             },
+#         'SciDocsRR':
+#             {
+#                 'query': 'hated even more than his asking: ',
+#                 'corpus': 'hated even more than his asking: '
+#             },
+#         'MindSmallReranking':
+#             {
+#                 'query': 'fall back on their favourite hobby: ',
+#                 'corpus': 'fall back on their favourite hobby: ',
+#             },
+#     },
+#     # 'hkunlp/instructor-large': {
+#     #     'AskUbuntuDupQuestions':
+#     #         {
+#     #             'query': 'Represent the Ubuntu question for reranking: ',
+#     #             'corpus': 'Represent the Ubuntu question for reranking: ',
+#     #         },
+#     #     'StackOverflowDupQuestions':
+#     #         {
+#     #             'query': 'Represent the StackOverflow question: ',
+#     #             'corpus': 'Represent the StackOverflow question: ',
+#     #         },
+#     #     'SciDocsRR':
+#     #         {
+#     #             'query': 'Represent the Scientific title: ',
+#     #             'corpus': 'Represent the Scientific document: '
+#     #         },
+#     #     'MindSmallReranking':
+#     #         {
+#     #             'query': 'Represent the news query for retrieving articles: ',
+#     #             'corpus': 'Represent the news article for retrieval: ',
+#     #         },
+#     # },
+#     # 'hkunlp/instructor-xl': {
+#     #     'AskUbuntuDupQuestions':
+#     #         {
+#     #             'query': 'Represent the Ubuntu question to retrieve a duplicate question: ',
+#     #             'corpus': 'Represent the Ubuntu question: ',
+#     #         },
+#     #     'StackOverflowDupQuestions':
+#     #         {
+#     #             'query': 'Represent the StackOverflow question: ',
+#     #             'corpus': 'Represent the StackOverflow question: ',
+#     #         },
+#     #     'SciDocsRR':
+#     #         {
+#     #             'query': 'Represent the Science question: ',
+#     #             'corpus': 'Represent the Science document: '
+#     #         },
+#     #     # 'SciDocsRR':
+#     #     #     {
+#     #     #         'query': 'Represent the Science question to retrieve a supporting document: ',
+#     #     #         'corpus': 'Represent the Science document: '
+#     #     #     },
+#     #     'MindSmallReranking':
+#     #         {
+#     #             'query': 'Represent the news query for retrieving articles: ',
+#     #             'corpus': 'Represent the news article for retrieval: ',
+#     #         },
+#     # }
+# }
+# MISLEADING_DEFINITIONS = {
+#     'hkunlp/instructor-base': {
+#         'AskUbuntuDupQuestions':
+#             {
+#                 'query': 'Represent the news comment for retrieval: ',
+#                 'corpus': 'Represent the news comment for retrieval: ',
+#             },
+#         'StackOverflowDupQuestions':
+#             {
+#                 'query': 'Represent the news comment for retrieval: ',
+#                 'corpus': 'Represent the news comment for retrieval: ',
+#             },
+#         'SciDocsRR':
+#             {
+#                 'query': 'Represent the news comment for retrieval: ',
+#                 'corpus': 'Represent the news comment for retrieval: '
+#             },
+#         'MindSmallReranking':
+#             {
+#                 'query': 'Represent the news comment for retrieval: ',
+#                 'corpus': 'Represent the news comment for retrieval: ',
+#             },
+#     },
+#     # 'hkunlp/instructor-large': {
+#     #     'AskUbuntuDupQuestions':
+#     #         {
+#     #             'query': 'Represent the Ubuntu question for reranking: ',
+#     #             'corpus': 'Represent the Ubuntu question for reranking: ',
+#     #         },
+#     #     'StackOverflowDupQuestions':
+#     #         {
+#     #             'query': 'Represent the StackOverflow question: ',
+#     #             'corpus': 'Represent the StackOverflow question: ',
+#     #         },
+#     #     'SciDocsRR':
+#     #         {
+#     #             'query': 'Represent the Scientific title: ',
+#     #             'corpus': 'Represent the Scientific document: '
+#     #         },
+#     #     'MindSmallReranking':
+#     #         {
+#     #             'query': 'Represent the news query for retrieving articles: ',
+#     #             'corpus': 'Represent the news article for retrieval: ',
+#     #         },
+#     # },
+#     # 'hkunlp/instructor-xl': {
+#     #     'AskUbuntuDupQuestions':
+#     #         {
+#     #             'query': 'Represent the Ubuntu question to retrieve a duplicate question: ',
+#     #             'corpus': 'Represent the Ubuntu question: ',
+#     #         },
+#     #     'StackOverflowDupQuestions':
+#     #         {
+#     #             'query': 'Represent the StackOverflow question: ',
+#     #             'corpus': 'Represent the StackOverflow question: ',
+#     #         },
+#     #     'SciDocsRR':
+#     #         {
+#     #             'query': 'Represent the Science question: ',
+#     #             'corpus': 'Represent the Science document: '
+#     #         },
+#     #     # 'SciDocsRR':
+#     #     #     {
+#     #     #         'query': 'Represent the Science question to retrieve a supporting document: ',
+#     #     #         'corpus': 'Represent the Science document: '
+#     #     #     },
+#     #     'MindSmallReranking':
+#     #         {
+#     #             'query': 'Represent the news query for retrieving articles: ',
+#     #             'corpus': 'Represent the news article for retrieval: ',
+#     #         },
+#     # }
+# }
 DEFINITIONS = {
     'hkunlp/instructor-base': {
         'AskUbuntuDupQuestions':
@@ -34,55 +179,55 @@ DEFINITIONS = {
                 'corpus': 'Represent the news article for retrieval: ',
             },
     },
-    'hkunlp/instructor-large': {
-        'AskUbuntuDupQuestions':
-            {
-                'query': 'Represent the Ubuntu question for reranking: ',
-                'corpus': 'Represent the Ubuntu question for reranking: ',
-            },
-        'StackOverflowDupQuestions':
-            {
-                'query': 'Represent the StackOverflow question: ',
-                'corpus': 'Represent the StackOverflow question: ',
-            },
-        'SciDocsRR':
-            {
-                'query': 'Represent the Scientific title: ',
-                'corpus': 'Represent the Scientific document: '
-            },
-        'MindSmallReranking':
-            {
-                'query': 'Represent the news query for retrieving articles: ',
-                'corpus': 'Represent the news article for retrieval: ',
-            },
-    },
-    'hkunlp/instructor-xl': {
-        'AskUbuntuDupQuestions':
-            {
-                'query': 'Represent the Ubuntu question to retrieve a duplicate question: ',
-                'corpus': 'Represent the Ubuntu question: ',
-            },
-        'StackOverflowDupQuestions':
-            {
-                'query': 'Represent the StackOverflow question: ',
-                'corpus': 'Represent the StackOverflow question: ',
-            },
-        'SciDocsRR':
-            {
-                'query': 'Represent the Science question: ',
-                'corpus': 'Represent the Science document: '
-            },
-        # 'SciDocsRR':
-        #     {
-        #         'query': 'Represent the Science question to retrieve a supporting document: ',
-        #         'corpus': 'Represent the Science document: '
-        #     },
-        'MindSmallReranking':
-            {
-                'query': 'Represent the news query for retrieving articles: ',
-                'corpus': 'Represent the news article for retrieval: ',
-            },
-    }
+    # 'hkunlp/instructor-large': {
+    #     'AskUbuntuDupQuestions':
+    #         {
+    #             'query': 'Represent the Ubuntu question for reranking: ',
+    #             'corpus': 'Represent the Ubuntu question for reranking: ',
+    #         },
+    #     'StackOverflowDupQuestions':
+    #         {
+    #             'query': 'Represent the StackOverflow question: ',
+    #             'corpus': 'Represent the StackOverflow question: ',
+    #         },
+    #     'SciDocsRR':
+    #         {
+    #             'query': 'Represent the Scientific title: ',
+    #             'corpus': 'Represent the Scientific document: '
+    #         },
+    #     'MindSmallReranking':
+    #         {
+    #             'query': 'Represent the news query for retrieving articles: ',
+    #             'corpus': 'Represent the news article for retrieval: ',
+    #         },
+    # },
+    # 'hkunlp/instructor-xl': {
+    #     'AskUbuntuDupQuestions':
+    #         {
+    #             'query': 'Represent the Ubuntu question to retrieve a duplicate question: ',
+    #             'corpus': 'Represent the Ubuntu question: ',
+    #         },
+    #     'StackOverflowDupQuestions':
+    #         {
+    #             'query': 'Represent the StackOverflow question: ',
+    #             'corpus': 'Represent the StackOverflow question: ',
+    #         },
+    #     'SciDocsRR':
+    #         {
+    #             'query': 'Represent the Science question: ',
+    #             'corpus': 'Represent the Science document: '
+    #         },
+    #     # 'SciDocsRR':
+    #     #     {
+    #     #         'query': 'Represent the Science question to retrieve a supporting document: ',
+    #     #         'corpus': 'Represent the Science document: '
+    #     #     },
+    #     'MindSmallReranking':
+    #         {
+    #             'query': 'Represent the news query for retrieving articles: ',
+    #             'corpus': 'Represent the news article for retrieval: ',
+    #         },
+    # }
 }
 
 class RerankingEvaluator(Evaluator):

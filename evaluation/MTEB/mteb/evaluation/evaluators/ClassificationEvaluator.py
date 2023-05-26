@@ -11,7 +11,176 @@ from .Evaluator import Evaluator
 
 
 logger = logging.getLogger(__name__)
-
+# RANDOM_DEFINITIONS = {
+#     'hkunlp/instructor-base':{
+#         'Banking77Classification': 'It was now reading the sign that said Privet Drive: ',
+#         'EmotionClassification':  'But on the edge of town, drills were: ',
+#         'TweetSentimentExtractionClassification': 'He supposed this was some stupid new fashion: ',
+#         'AmazonCounterfactualClassification': 'He didn’t know why, but they made him uneasy: ',
+#         'ImdbClassification': 'He dashed back across the road, hurried up to his office: ',
+#         'MassiveIntentClassification':'He put the receiver back down and stroked, '
+#                                          'no, he was being stupid, '
+#                                          'whispering excitedly, an unusual name, concentrate on drills, '
+#                                          'the contrary, thought, might have been, '
+#                                          'back across the road, also thought he had, '
+#                                          'behaving very unusually, squeaky, catch the last report, '
+#                                          'rooted to the spot, '
+#                                          'like yourself should be celebrating: ',
+#         'MassiveScenarioClassification':  "bird-watchers everywhere have reported that"
+#                                          "stood rooted to the spot, just gave him, driveway of number, everywhere, unable, have, instead, promised, "
+#                                          "rattled, had the same, tea through pursed: ",
+#         'MTOPDomainClassification': 'whisper about the Potters; ',
+#         'MTOPIntentClassification': 'rather severe-looking woman, '
+#                                     ' found what he, cloak which swept, '
+#                                     'what he was, out of their, '
+#                                     'suddenly at, which was, '
+#                                     'cloak, in, had found, '
+#                                     'anything, '
+#                                     'street, were, which was, '
+#                                     'suddenly at the, beneath her, loud noise, '
+#                                     'discuss, Dumbledore, couldn’t, watch, '
+#                                     'kill, bowed his head, also thought, voice trembled, odd watch: ',
+#         'ToxicConversationsClassification': 'Muggles started swarming around: ',
+#         'AmazonPolarityClassification': 'To Harry Potter – the boy who lived: ',
+#         'AmazonReviewsClassification': 'out the silver Put-Outer: ',
+#     },
+#     # 'hkunlp/instructor-large':{
+#     #     'Banking77Classification': 'Represent the bank purpose for classification: ',
+#     #     'EmotionClassification':  'Represent an emotion sentence for classifying the emotion: ',
+#     #     'TweetSentimentExtractionClassification': 'Represent a Tweet sentence for classification: ',
+#     #     'AmazonCounterfactualClassification': 'Represent a counter-factual sentence for classification: ',
+#     #     'ImdbClassification': 'Represent a review sentence for classifying emotion as positive or negative: ',
+#     #     'MassiveIntentClassification':'Represent the sentence for classifying the purpose as one of qa_maths, takeaway_order, weather_query, '
+#     #                                    'audio_volume_other, recommendation_movies, iot_cleaning, qa_stock, '
+#     #                                    'iot_hue_lighton, iot_hue_lightchange, alarm_remove, play_radio, '
+#     #                                    'transport_taxi, datetime_query, lists_remove, lists_createoradd, '
+#     #                                    'datetime_convert, play_music, iot_hue_lightdim, email_querycontact, qa_factoid, '
+#     #                                    'cooking_query, music_query, qa_currency, calendar_query, music_settings, '
+#     #                                    'music_dislikeness, audio_volume_mute, cooking_recipe, general_joke, play_game, '
+#     #                                    'news_query, recommendation_events, music_likeness, audio_volume_down, '
+#     #                                    'calendar_remove, iot_coffee, transport_traffic, iot_wemo_off, email_sendemail, '
+#     #                                    'iot_hue_lightup, social_query, social_post, iot_hue_lightoff, transport_query, '
+#     #                                    'general_greet, play_podcasts, alarm_query, calendar_set, alarm_set, '
+#     #                                    'transport_ticket, general_quirky, audio_volume_up, iot_wemo_on, qa_definition, '
+#     #                                    'recommendation_locations, play_audiobook, email_addcontact, takeaway_query, '
+#     #                                    'lists_query or email_query: ',
+#     #     'MassiveScenarioClassification': "Represent the scene for classifying its scene as one of calendar, "
+#     #                                      "play, general, alarm, music, iot, audio, takeaway, datetime, recommendation, "
+#     #                                      "social, lists, email, transport, cooking, weather, news or qa: ",
+#     #     'MTOPDomainClassification': 'Represent a sentence: ',
+#     #     'MTOPIntentClassification': 'Represent the sentence for retrieval: ',
+#     #     'ToxicConversationsClassification': 'Represent a toxicity comment for classifying its toxicity as toxic or non-toxic: ',
+#     #     'AmazonPolarityClassification': 'Represent the sentiment comment for retrieving a duplicate sentence: ',
+#     #     'AmazonReviewsClassification 42.12': 'Represent a review sentence for classification: ',
+#     #     'AmazonReviewsClassification': 'Represent a review for classification: ',
+#     # },
+#     # 'hkunlp/instructor-xl': {
+#     #     'Banking77Classification': 'Represent the bank77 purposes for retrieving its bank intent: ',
+#     #     'EmotionClassification':  'Represent the amazon emotion sentence for classifying the emotion: ',
+#     #     'AmazonCounterfactualClassification': 'Represent Daily casual counter-sentences for categorization as correct-sentences or counter-sentences: ',
+#     #     # 'AmazonCounterfactualClassification': 'Represent Daily casual counter-sentences for categorization as correct-sentences or counter-sentences: ',
+#     #     'ImdbClassification': 'Represent a review sentence for classifying emotion as positive or negative: ',
+#     #     'MassiveIntentClassification':'Represent the sentence for categorizing its task intent as qa_maths, takeaway_order, '
+#     #                                    'audio_volume_other, recommendation_movies, iot_cleaning, qa_stock, '
+#     #                                   'or recommendation_locations: ',
+#     #     'MassiveScenarioClassification': "represent an ms sentence for retrieving its intent: ",
+#     #     'MTOPDomainClassification': 'represent a MTO sentence to retrieve the task intention: ',
+#     #     'MTOPIntentClassification': 'Represent an mto sentence for retrieving its behind task intention: ',
+#     #     'ToxicConversationsClassification': 'Represent a toxicity comment for classifying its toxicity as toxic or non-toxic: ',
+#     #     # 'ToxicConversationsClassification': 'Represent toxicity comments for classifying its toxicity as toxic or non-toxic: ',
+#     #     'AmazonPolarityClassification': 'Represent the sentiment comment for retrieving a duplicate sentence: ',
+#     #     # 'AmazonPolarityClassification': 'Represent the sentiment comment to retrieve a duplicate sentence: ',
+#     #     'AmazonReviewsClassification': 'Represent an amazon review sentence to find the emoation; ',
+#     #     # 'AmazonReviewsClassification': 'Represent an amazon movie review sentence to categorize the emotion; ',
+#     #     'TweetSentimentExtractionClassification': 'Represent Daily-life spoken sentences for categorization; Input: ',
+#     #     # 'TweetSentimentExtractionClassification': 'Represent Daily-life spoken expression for classification; Input: ',
+#     # },
+# }
+# MISLEADING_DEFINITIONS = {
+#     'hkunlp/instructor-base':{
+#         'Banking77Classification': 'Represent the Ubuntu question for reranking: ',
+#         'EmotionClassification':  'Represent the Ubuntu question for reranking: ',
+#         'TweetSentimentExtractionClassification': 'Represent the Ubuntu question for reranking: ',
+#         'AmazonCounterfactualClassification': 'Represent the Ubuntu question for reranking: ',
+#         'ImdbClassification': 'Represent the Ubuntu question for reranking: ',
+#         'MassiveIntentClassification':'Represent the Ubuntu question for reranking: '
+#                                          'Represent the Ubuntu question for reranking: '
+#                                          'Represent the Ubuntu question for reranking: '
+#                                          'Represent the Ubuntu question for reranking: '
+#                                          'Represent the Ubuntu question for reranking: '
+#                                          'Represent the Ubuntu question for reranking: '
+#                                          'Represent the Ubuntu question for reranking: '
+#                                          'Represent the Ubuntu question for reranking: ',
+#         'MassiveScenarioClassification':  "Represent the Ubuntu question for reranking: "
+#                                          "Represent the Ubuntu question for reranking: "
+#                                          "Represent the Ubuntu question for reranking: ",
+#         'MTOPDomainClassification': 'Represent the Ubuntu question for reranking: ',
+#         'MTOPIntentClassification': 'Represent the Ubuntu question for reranking: '
+#                                     'Represent the Ubuntu question for reranking: '
+#                                     'Represent the Ubuntu question for reranking: '
+#                                     'Represent the Ubuntu question for reranking: '
+#                                     'Represent the Ubuntu question for reranking: '
+#                                     'Represent the Ubuntu question for reranking: '
+#                                     'Represent the Ubuntu question for reranking: '
+#                                     'Represent the Ubuntu question for reranking: '
+#                                     'Represent the Ubuntu question for reranking: '
+#                                     'Represent the Ubuntu question for reranking: ',
+#         'ToxicConversationsClassification': 'Represent the Ubuntu question for reranking: ',
+#         'AmazonPolarityClassification': 'Represent the Ubuntu question for reranking: ',
+#         'AmazonReviewsClassification': 'Represent the Ubuntu question for reranking: ',
+#     },
+#     # 'hkunlp/instructor-large':{
+#     #     'Banking77Classification': 'Represent the bank purpose for classification: ',
+#     #     'EmotionClassification':  'Represent an emotion sentence for classifying the emotion: ',
+#     #     'TweetSentimentExtractionClassification': 'Represent a Tweet sentence for classification: ',
+#     #     'AmazonCounterfactualClassification': 'Represent a counter-factual sentence for classification: ',
+#     #     'ImdbClassification': 'Represent a review sentence for classifying emotion as positive or negative: ',
+#     #     'MassiveIntentClassification':'Represent the sentence for classifying the purpose as one of qa_maths, takeaway_order, weather_query, '
+#     #                                    'audio_volume_other, recommendation_movies, iot_cleaning, qa_stock, '
+#     #                                    'iot_hue_lighton, iot_hue_lightchange, alarm_remove, play_radio, '
+#     #                                    'transport_taxi, datetime_query, lists_remove, lists_createoradd, '
+#     #                                    'datetime_convert, play_music, iot_hue_lightdim, email_querycontact, qa_factoid, '
+#     #                                    'cooking_query, music_query, qa_currency, calendar_query, music_settings, '
+#     #                                    'music_dislikeness, audio_volume_mute, cooking_recipe, general_joke, play_game, '
+#     #                                    'news_query, recommendation_events, music_likeness, audio_volume_down, '
+#     #                                    'calendar_remove, iot_coffee, transport_traffic, iot_wemo_off, email_sendemail, '
+#     #                                    'iot_hue_lightup, social_query, social_post, iot_hue_lightoff, transport_query, '
+#     #                                    'general_greet, play_podcasts, alarm_query, calendar_set, alarm_set, '
+#     #                                    'transport_ticket, general_quirky, audio_volume_up, iot_wemo_on, qa_definition, '
+#     #                                    'recommendation_locations, play_audiobook, email_addcontact, takeaway_query, '
+#     #                                    'lists_query or email_query: ',
+#     #     'MassiveScenarioClassification': "Represent the scene for classifying its scene as one of calendar, "
+#     #                                      "play, general, alarm, music, iot, audio, takeaway, datetime, recommendation, "
+#     #                                      "social, lists, email, transport, cooking, weather, news or qa: ",
+#     #     'MTOPDomainClassification': 'Represent a sentence: ',
+#     #     'MTOPIntentClassification': 'Represent the sentence for retrieval: ',
+#     #     'ToxicConversationsClassification': 'Represent a toxicity comment for classifying its toxicity as toxic or non-toxic: ',
+#     #     'AmazonPolarityClassification': 'Represent the sentiment comment for retrieving a duplicate sentence: ',
+#     #     'AmazonReviewsClassification 42.12': 'Represent a review sentence for classification: ',
+#     #     'AmazonReviewsClassification': 'Represent a review for classification: ',
+#     # },
+#     # 'hkunlp/instructor-xl': {
+#     #     'Banking77Classification': 'Represent the bank77 purposes for retrieving its bank intent: ',
+#     #     'EmotionClassification':  'Represent the amazon emotion sentence for classifying the emotion: ',
+#     #     'AmazonCounterfactualClassification': 'Represent Daily casual counter-sentences for categorization as correct-sentences or counter-sentences: ',
+#     #     # 'AmazonCounterfactualClassification': 'Represent Daily casual counter-sentences for categorization as correct-sentences or counter-sentences: ',
+#     #     'ImdbClassification': 'Represent a review sentence for classifying emotion as positive or negative: ',
+#     #     'MassiveIntentClassification':'Represent the sentence for categorizing its task intent as qa_maths, takeaway_order, '
+#     #                                    'audio_volume_other, recommendation_movies, iot_cleaning, qa_stock, '
+#     #                                   'or recommendation_locations: ',
+#     #     'MassiveScenarioClassification': "represent an ms sentence for retrieving its intent: ",
+#     #     'MTOPDomainClassification': 'represent a MTO sentence to retrieve the task intention: ',
+#     #     'MTOPIntentClassification': 'Represent an mto sentence for retrieving its behind task intention: ',
+#     #     'ToxicConversationsClassification': 'Represent a toxicity comment for classifying its toxicity as toxic or non-toxic: ',
+#     #     # 'ToxicConversationsClassification': 'Represent toxicity comments for classifying its toxicity as toxic or non-toxic: ',
+#     #     'AmazonPolarityClassification': 'Represent the sentiment comment for retrieving a duplicate sentence: ',
+#     #     # 'AmazonPolarityClassification': 'Represent the sentiment comment to retrieve a duplicate sentence: ',
+#     #     'AmazonReviewsClassification': 'Represent an amazon review sentence to find the emoation; ',
+#     #     # 'AmazonReviewsClassification': 'Represent an amazon movie review sentence to categorize the emotion; ',
+#     #     'TweetSentimentExtractionClassification': 'Represent Daily-life spoken sentences for categorization; Input: ',
+#     #     # 'TweetSentimentExtractionClassification': 'Represent Daily-life spoken expression for classification; Input: ',
+#     # },
+# }
 DEFINITIONS = {
     'hkunlp/instructor-base':{
         'Banking77Classification': 'Represent the bank purpose for classification: ',
@@ -45,57 +214,57 @@ DEFINITIONS = {
         'AmazonPolarityClassification': 'Represent the sentiment comment for retrieving a duplicate sentence: ',
         'AmazonReviewsClassification': 'represent an amazon review sentence: ',
     },
-    'hkunlp/instructor-large':{
-        'Banking77Classification': 'Represent the bank purpose for classification: ',
-        'EmotionClassification':  'Represent an emotion sentence for classifying the emotion: ',
-        'TweetSentimentExtractionClassification': 'Represent a Tweet sentence for classification: ',
-        'AmazonCounterfactualClassification': 'Represent a counter-factual sentence for classification: ',
-        'ImdbClassification': 'Represent a review sentence for classifying emotion as positive or negative: ',
-        'MassiveIntentClassification':'Represent the sentence for classifying the purpose as one of qa_maths, takeaway_order, weather_query, '
-                                       'audio_volume_other, recommendation_movies, iot_cleaning, qa_stock, '
-                                       'iot_hue_lighton, iot_hue_lightchange, alarm_remove, play_radio, '
-                                       'transport_taxi, datetime_query, lists_remove, lists_createoradd, '
-                                       'datetime_convert, play_music, iot_hue_lightdim, email_querycontact, qa_factoid, '
-                                       'cooking_query, music_query, qa_currency, calendar_query, music_settings, '
-                                       'music_dislikeness, audio_volume_mute, cooking_recipe, general_joke, play_game, '
-                                       'news_query, recommendation_events, music_likeness, audio_volume_down, '
-                                       'calendar_remove, iot_coffee, transport_traffic, iot_wemo_off, email_sendemail, '
-                                       'iot_hue_lightup, social_query, social_post, iot_hue_lightoff, transport_query, '
-                                       'general_greet, play_podcasts, alarm_query, calendar_set, alarm_set, '
-                                       'transport_ticket, general_quirky, audio_volume_up, iot_wemo_on, qa_definition, '
-                                       'recommendation_locations, play_audiobook, email_addcontact, takeaway_query, '
-                                       'lists_query or email_query: ',
-        'MassiveScenarioClassification': "Represent the scene for classifying its scene as one of calendar, "
-                                         "play, general, alarm, music, iot, audio, takeaway, datetime, recommendation, "
-                                         "social, lists, email, transport, cooking, weather, news or qa: ",
-        'MTOPDomainClassification': 'Represent a sentence: ',
-        'MTOPIntentClassification': 'Represent the sentence for retrieval: ',
-        'ToxicConversationsClassification': 'Represent a toxicity comment for classifying its toxicity as toxic or non-toxic: ',
-        'AmazonPolarityClassification': 'Represent the sentiment comment for retrieving a duplicate sentence: ',
-        'AmazonReviewsClassification 42.12': 'Represent a review sentence for classification: ',
-        'AmazonReviewsClassification': 'Represent a review for classification: ',
-    },
-    'hkunlp/instructor-xl': {
-        'Banking77Classification': 'Represent the bank77 purposes for retrieving its bank intent: ',
-        'EmotionClassification':  'Represent the amazon emotion sentence for classifying the emotion: ',
-        'AmazonCounterfactualClassification': 'Represent Daily casual counter-sentences for categorization as correct-sentences or counter-sentences: ',
-        # 'AmazonCounterfactualClassification': 'Represent Daily casual counter-sentences for categorization as correct-sentences or counter-sentences: ',
-        'ImdbClassification': 'Represent a review sentence for classifying emotion as positive or negative: ',
-        'MassiveIntentClassification':'Represent the sentence for categorizing its task intent as qa_maths, takeaway_order, '
-                                       'audio_volume_other, recommendation_movies, iot_cleaning, qa_stock, '
-                                      'or recommendation_locations: ',
-        'MassiveScenarioClassification': "represent an ms sentence for retrieving its intent: ",
-        'MTOPDomainClassification': 'represent a MTO sentence to retrieve the task intention: ',
-        'MTOPIntentClassification': 'Represent an mto sentence for retrieving its behind task intention: ',
-        'ToxicConversationsClassification': 'Represent a toxicity comment for classifying its toxicity as toxic or non-toxic: ',
-        # 'ToxicConversationsClassification': 'Represent toxicity comments for classifying its toxicity as toxic or non-toxic: ',
-        'AmazonPolarityClassification': 'Represent the sentiment comment for retrieving a duplicate sentence: ',
-        # 'AmazonPolarityClassification': 'Represent the sentiment comment to retrieve a duplicate sentence: ',
-        'AmazonReviewsClassification': 'Represent an amazon review sentence to find the emoation; ',
-        # 'AmazonReviewsClassification': 'Represent an amazon movie review sentence to categorize the emotion; ',
-        'TweetSentimentExtractionClassification': 'Represent Daily-life spoken sentences for categorization; Input: ',
-        # 'TweetSentimentExtractionClassification': 'Represent Daily-life spoken expression for classification; Input: ',
-    },
+    # 'hkunlp/instructor-large':{
+    #     'Banking77Classification': 'Represent the bank purpose for classification: ',
+    #     'EmotionClassification':  'Represent an emotion sentence for classifying the emotion: ',
+    #     'TweetSentimentExtractionClassification': 'Represent a Tweet sentence for classification: ',
+    #     'AmazonCounterfactualClassification': 'Represent a counter-factual sentence for classification: ',
+    #     'ImdbClassification': 'Represent a review sentence for classifying emotion as positive or negative: ',
+    #     'MassiveIntentClassification':'Represent the sentence for classifying the purpose as one of qa_maths, takeaway_order, weather_query, '
+    #                                    'audio_volume_other, recommendation_movies, iot_cleaning, qa_stock, '
+    #                                    'iot_hue_lighton, iot_hue_lightchange, alarm_remove, play_radio, '
+    #                                    'transport_taxi, datetime_query, lists_remove, lists_createoradd, '
+    #                                    'datetime_convert, play_music, iot_hue_lightdim, email_querycontact, qa_factoid, '
+    #                                    'cooking_query, music_query, qa_currency, calendar_query, music_settings, '
+    #                                    'music_dislikeness, audio_volume_mute, cooking_recipe, general_joke, play_game, '
+    #                                    'news_query, recommendation_events, music_likeness, audio_volume_down, '
+    #                                    'calendar_remove, iot_coffee, transport_traffic, iot_wemo_off, email_sendemail, '
+    #                                    'iot_hue_lightup, social_query, social_post, iot_hue_lightoff, transport_query, '
+    #                                    'general_greet, play_podcasts, alarm_query, calendar_set, alarm_set, '
+    #                                    'transport_ticket, general_quirky, audio_volume_up, iot_wemo_on, qa_definition, '
+    #                                    'recommendation_locations, play_audiobook, email_addcontact, takeaway_query, '
+    #                                    'lists_query or email_query: ',
+    #     'MassiveScenarioClassification': "Represent the scene for classifying its scene as one of calendar, "
+    #                                      "play, general, alarm, music, iot, audio, takeaway, datetime, recommendation, "
+    #                                      "social, lists, email, transport, cooking, weather, news or qa: ",
+    #     'MTOPDomainClassification': 'Represent a sentence: ',
+    #     'MTOPIntentClassification': 'Represent the sentence for retrieval: ',
+    #     'ToxicConversationsClassification': 'Represent a toxicity comment for classifying its toxicity as toxic or non-toxic: ',
+    #     'AmazonPolarityClassification': 'Represent the sentiment comment for retrieving a duplicate sentence: ',
+    #     'AmazonReviewsClassification 42.12': 'Represent a review sentence for classification: ',
+    #     'AmazonReviewsClassification': 'Represent a review for classification: ',
+    # },
+    # 'hkunlp/instructor-xl': {
+    #     'Banking77Classification': 'Represent the bank77 purposes for retrieving its bank intent: ',
+    #     'EmotionClassification':  'Represent the amazon emotion sentence for classifying the emotion: ',
+    #     'AmazonCounterfactualClassification': 'Represent Daily casual counter-sentences for categorization as correct-sentences or counter-sentences: ',
+    #     # 'AmazonCounterfactualClassification': 'Represent Daily casual counter-sentences for categorization as correct-sentences or counter-sentences: ',
+    #     'ImdbClassification': 'Represent a review sentence for classifying emotion as positive or negative: ',
+    #     'MassiveIntentClassification':'Represent the sentence for categorizing its task intent as qa_maths, takeaway_order, '
+    #                                    'audio_volume_other, recommendation_movies, iot_cleaning, qa_stock, '
+    #                                   'or recommendation_locations: ',
+    #     'MassiveScenarioClassification': "represent an ms sentence for retrieving its intent: ",
+    #     'MTOPDomainClassification': 'represent a MTO sentence to retrieve the task intention: ',
+    #     'MTOPIntentClassification': 'Represent an mto sentence for retrieving its behind task intention: ',
+    #     'ToxicConversationsClassification': 'Represent a toxicity comment for classifying its toxicity as toxic or non-toxic: ',
+    #     # 'ToxicConversationsClassification': 'Represent toxicity comments for classifying its toxicity as toxic or non-toxic: ',
+    #     'AmazonPolarityClassification': 'Represent the sentiment comment for retrieving a duplicate sentence: ',
+    #     # 'AmazonPolarityClassification': 'Represent the sentiment comment to retrieve a duplicate sentence: ',
+    #     'AmazonReviewsClassification': 'Represent an amazon review sentence to find the emoation; ',
+    #     # 'AmazonReviewsClassification': 'Represent an amazon movie review sentence to categorize the emotion; ',
+    #     'TweetSentimentExtractionClassification': 'Represent Daily-life spoken sentences for categorization; Input: ',
+    #     # 'TweetSentimentExtractionClassification': 'Represent Daily-life spoken expression for classification; Input: ',
+    # },
 }
 
 class kNNClassificationEvaluator(Evaluator):
@@ -314,7 +483,7 @@ class logRegClassificationEvaluator(Evaluator):
 
         if self.args.prompt:
             new_sentences = []
-            print('with prompt')
+            print('with prompt', self.args.prompt)
             print("Training prompt:", DEFINITIONS[self.args.prompt][self.args.task_name])
             for s in self.sentences_train:
                 new_sentences.append([DEFINITIONS[self.args.prompt][self.args.task_name], s, 0])
