@@ -43,8 +43,8 @@ if __name__ == '__main__':
         }
     }
     reference_files = {
-        'nyt-location': "/Users/dheerajmekala/Work/instructor-embedding/data/nyt/location/df_location.csv",
-        'nyt-topic': "/Users/dheerajmekala/Work/instructor-embedding/data/nyt/topic/df_topic.csv",
+        'nyt-location': "/data/dheeraj/OOD/location/df_location.csv",
+        'nyt-topic': "/data/dheeraj/OOD/topic/df_topic.csv",
     }
     definition = definitions[args.prompt][args.task]
 
